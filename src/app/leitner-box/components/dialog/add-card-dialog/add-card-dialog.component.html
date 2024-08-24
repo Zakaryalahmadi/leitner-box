@@ -1,0 +1,53 @@
+<form class="add-card-dialog">
+  <h1 mat-dialog-title>You can add cards</h1>
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your Tag</mat-label>
+      <input
+        matInput
+        placeholder="Ex: TeamWork"
+        [formControl]="addCardForm.controls.tag"
+        [matAutocomplete]="auto"
+        required
+      />
+
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let tagOptions of filtredTags$ | async" [value]="tagOptions">
+          {{ tagOptions }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your question</mat-label>
+      <input
+        matInput
+        placeholder="Ex: what is the diffrence .."
+        [formControl]="addCardForm.controls.question"
+        required
+      />
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your answer</mat-label>
+      <input
+        matInput
+        placeholder="Ex: the diffrence is.."
+        [formControl]="addCardForm.controls.answer"
+        required
+      />
+    </mat-form-field>
+  </p>
+
+  <div class="action-buttons">
+    <button mat-button class="bg-light-black text-white" (click)="onSubmitForm()">
+      <span>add new card</span>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</form>
